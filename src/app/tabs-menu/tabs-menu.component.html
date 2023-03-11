@@ -1,0 +1,33 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+  
+   
+  
+  <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-tabs>
+  <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="users">
+        <ion-icon name="people"></ion-icon>
+        Usuarios
+      </ion-tab-button>
+       <ion-tab-button tab="posts">
+        <ion-icon name="newspaper-outline"></ion-icon>
+        Posts
+      </ion-tab-button>
+      <ion-tab-button tab="comments">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        Comentarios
+      </ion-tab-button>
+      <ion-tab-button tab="toDo" disabled="true">
+        <ion-icon name="clipboard-outline"></ion-icon>
+        ToDo
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+
+</ion-content>
+
+
+
+</ion-app>

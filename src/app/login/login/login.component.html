@@ -1,0 +1,123 @@
+<div style="background-color: white;"
+  class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+>
+  <div class="w-full max-w-md space-y-8">
+    
+    <div>
+      <img class="mx-auto h-12 w-auto" src="../../assets/logo.png" alt="logo" />
+      <h2
+        class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"
+      >
+        Gestión de usuarios
+      </h2>
+      <div *ngIf="!loginResponse">
+        <ion-label>Verificando ID...</ion-label>
+        <ion-spinner name="lines"></ion-spinner>
+      </div>
+    </div>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin(loginForm.value)"
+      class="mt-8 space-y-6"
+     
+      method="POST"
+    >
+      <input type="hidden" name="remember" value="true" />
+      <div class="-space-y-px rounded-md shadow-sm">
+        <div>
+          
+          <input
+            id="id"
+            formControlName="user_id"
+            type="number"
+           
+            required
+            class="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            placeholder="ID Usuario"
+          />
+        </div>
+        
+      </div>
+
+      <div>
+        <button
+                  type="submit"
+          class="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg
+              class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </span>
+          Iniciar sesión
+        </button>
+      </div>
+      <div>
+        <ion-button slot="end" id="open-modal" fill="outline">
+            Crear usuario
+          </ion-button>
+          <ion-modal trigger="open-modal">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar color="primary">
+                  <ion-buttons slot="start">
+                    <ion-button (click)="cancel()">
+                      <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                  <ion-title>Insertar usuario</ion-title>
+                 
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding">
+                <form [formGroup]="addUserForm" (ngSubmit)="addUser(addUserForm)" novalidate>
+                  <ion-list>
+                  <!-- Nombre -->
+                <ion-label position="stacked">Nombre y Apellidos</ion-label>
+                    <ion-input formControlName="name" placeholder="Enter nombre"></ion-input>
+                  <ion-label  *ngIf="isSubmit && errorControl['name'].errors" color="danger" class="ion-text-center"> Nombre requerido.</ion-label>
+                  <div *ngIf="!loginResponse">
+                    <ion-label>Insertando usuario...</ion-label>
+                    <ion-spinner name="lines"></ion-spinner>
+                  </div>
+                  <!-- Email -->
+                  <ion-item></ion-item>
+                    <ion-label position="stacked">Email</ion-label>
+                    <ion-input formControlName="email" placeholder="email@domain.com" type="email"></ion-input>
+                 
+                    <ion-label  *ngIf="isSubmit && errorControl['email'].errors" color="danger" class="ion-text-center"> Email requerido.</ion-label>
+                    
+                
+              </ion-list>
+                  <!-- Genero -->
+                 
+                  
+                  <ion-list>
+                    <ion-item>
+                      <ion-select placeholder="Select género" formControlName="gender">
+                        <ion-select-option value="female">Femenino</ion-select-option>
+                        <ion-select-option value="male">Masculino</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    <ion-label  *ngIf="isSubmit && errorControl['gender'].errors" color="danger" class="ion-text-center"> Género</ion-label>
+                  </ion-list>
+                  
+                <ion-button type="submit" slot="end" size="small" color="success">Insertar</ion-button>
+                </form>
+                
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+      </div>
+    </form>
+  </div>
+</div>
