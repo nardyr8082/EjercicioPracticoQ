@@ -41,7 +41,7 @@ El usuario debe poder cambiar el estado de una tarea de pendiente a completada o
 El usuario debe poder eliminar una tarea de la lista.
 
 
-##Requisitos Técnicos
+## Requisitos Técnicos
 
 Utilice Ionic CLI para generar y administrar el proyecto. (Ejecutado al 100%)
 
